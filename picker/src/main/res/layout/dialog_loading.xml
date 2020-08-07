@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:padding="40dp">
 
-    <com.github.rahatarmanahmed.cpv.CircularProgressView
+    <com.wiser.picker.ui.loading.progressView.CircularProgressView
         android:id="@+id/loading_progress"
         android:layout_width="40dp"
         android:layout_height="40dp"

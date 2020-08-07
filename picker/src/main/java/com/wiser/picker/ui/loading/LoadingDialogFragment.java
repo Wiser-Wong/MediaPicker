@@ -1,4 +1,4 @@
-package com.wiser.picker.loading;
+package com.wiser.picker.ui.loading;
 
 import android.content.DialogInterface;
 import android.graphics.Color;

@@ -6,7 +6,7 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.wiser.picker.api.model.MediaData;
-import com.wiser.picker.api.core.MediaHelper;
+import com.wiser.picker.lib.MediaHelper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,7 +31,7 @@ public class ExampleInstrumentedTest {
 
     @Test
     public void loadAllPhoto(){
-        List<MediaData> mediaDataList = MediaHelper.mediaManage().loadLocalSystemPhotos(InstrumentationRegistry.getInstrumentation().getTargetContext());
+        List<MediaData> mediaDataList = MediaHelper.mediaQueryManage().queryLocalSystemPhotos(InstrumentationRegistry.getInstrumentation().getTargetContext());
         if (mediaDataList != null) {
 
         }

@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <style name="MediaBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="themeActionBarBg">@color/themeActionBarBg</item>
+        <item name="themeListBg">@color/themeListBg</item>
+        <item name="themeCoverBg">@color/themeCoverBg</item>
+        <item name="themeCancelIcon">@drawable/media_close_icon</item>
+    </style>
+
     <!-- 默认Dialog弹窗风格-->
     <style name="DefaultDialogTheme" parent="Theme.AppCompat.Light.DialogWhenLarge">
         <!-- 有无边框 改变Dialog透明背景颜色-->

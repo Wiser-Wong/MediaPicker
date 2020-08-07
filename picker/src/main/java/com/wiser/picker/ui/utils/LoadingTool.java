@@ -1,8 +1,8 @@
-package com.wiser.picker.api.utils;
+package com.wiser.picker.ui.utils;
 
 import androidx.fragment.app.FragmentActivity;
 
-import com.wiser.picker.loading.LoadingDialogFragment;
+import com.wiser.picker.ui.loading.LoadingDialogFragment;
 
 /**
  * @author Wiser
