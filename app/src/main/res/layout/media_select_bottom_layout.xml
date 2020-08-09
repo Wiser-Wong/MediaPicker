@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#00000000">
+    android:background="#7D000000">
 
     <TextView
         android:id="@+id/tv_media_select_preview"
@@ -34,7 +34,7 @@
         android:paddingTop="12dp"
         android:paddingEnd="31dp"
         android:paddingBottom="12dp"
-        android:text="完成"
+        android:text="自定义完成"
         android:textColor="#50ffffff"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"

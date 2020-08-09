@@ -34,6 +34,8 @@ public class MediaConfig implements Parcelable {
 
 	public long		compressPhotoSize;			// 压缩图片大小 (kb)
 
+	public long		compressVideoSize;			// 压缩视频大小 (kb)
+
 	public boolean	isCameraCrop;				// 是否相机裁剪
 
 	public int		cropWidth;					// 裁剪宽度
@@ -66,6 +68,7 @@ public class MediaConfig implements Parcelable {
 		this.compressHeight = builder.compressHeight;
 		this.compressQuality = builder.compressQuality;
 		this.compressPhotoSize = builder.compressPhotoSize;
+		this.compressVideoSize = builder.compressVideoSize;
 		this.isCameraCrop = builder.isCameraCrop;
 		this.cropWidth = builder.cropWidth;
 		this.cropHeight = builder.cropHeight;
@@ -88,6 +91,7 @@ public class MediaConfig implements Parcelable {
 		compressHeight = in.readInt();
 		compressQuality = in.readInt();
 		compressPhotoSize = in.readLong();
+		compressVideoSize = in.readLong();
 		isCameraCrop = in.readByte() != 0;
 		cropWidth = in.readInt();
 		cropHeight = in.readInt();
@@ -129,6 +133,7 @@ public class MediaConfig implements Parcelable {
 		dest.writeInt(compressHeight);
 		dest.writeInt(compressQuality);
 		dest.writeLong(compressPhotoSize);
+		dest.writeLong(compressVideoSize);
 		dest.writeByte((byte) (isCameraCrop ? 1 : 0));
 		dest.writeInt(cropWidth);
 		dest.writeInt(cropHeight);
@@ -163,6 +168,8 @@ public class MediaConfig implements Parcelable {
 
 		private long	compressPhotoSize;
 
+		private long	compressVideoSize;
+
 		private boolean	isCameraCrop;
 
 		private int		cropWidth;
@@ -193,6 +200,7 @@ public class MediaConfig implements Parcelable {
 			compressHeight = config.compressHeight;
 			compressQuality = config.compressQuality;
 			compressPhotoSize = config.compressPhotoSize;
+			compressVideoSize = config.compressVideoSize;
 			isCameraCrop = config.isCameraCrop;
 			cropWidth = config.cropWidth;
 			cropHeight = config.cropHeight;
@@ -407,6 +415,11 @@ public class MediaConfig implements Parcelable {
 
 		public Builder ofCompressPhotoSize(long compressPhotoSize) {
 			this.compressPhotoSize = compressPhotoSize;
+			return this;
+		}
+
+		public Builder ofCompressVideoSize(long compressVideoSize) {
+			this.compressVideoSize = compressVideoSize;
 			return this;
 		}
 
