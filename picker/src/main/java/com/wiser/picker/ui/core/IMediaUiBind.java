@@ -18,7 +18,7 @@ import java.util.List;
  * 
  *         媒体扩展接口
  */
-public interface IMediaBind {
+public interface IMediaUiBind {
 
 	/**
 	 * 主题
@@ -86,5 +86,5 @@ public interface IMediaBind {
 	/**
 	 * 默认扩展
 	 */
-	IMediaBind defaultBind = new MediaBind();
+	IMediaUiBind defaultBind = new MediaUiBind();
 }

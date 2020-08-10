@@ -5,7 +5,6 @@ import android.os.Parcelable;
 
 import com.wiser.picker.api.config.MediaConstants;
 import com.wiser.picker.api.model.MediaData;
-import com.wiser.picker.api.task.compress.CompressPhotoTask;
 import com.wiser.picker.api.task.compress.OnCompressListener;
 import com.wiser.picker.api.task.load.OnLoadMediaListener;
 import com.wiser.picker.api.utils.FileHelper;
@@ -58,13 +57,13 @@ public class MediaSelectBiz implements IMediaSelectBiz {
 			@Override protected void onLoadMediaLoading() {
 				super.onLoadMediaLoading();
 				// 显示查询loading
-				MediaHelper.mediaManage().bind().customLoading(ui(), false);
+				MediaHelper.mediaUiManage().bind().customLoading(ui(), false);
 
 			}
 
 			@Override protected void onLoadMediaComplete(List<MediaData> mediaDataList) {
 				// 消失查询loading
-				MediaHelper.mediaManage().bind().customLoading(ui(), true);
+				MediaHelper.mediaUiManage().bind().customLoading(ui(), true);
 				// 赋值
 				MediaSelectBiz.this.sourceMediaDataList = mediaDataList;
 				setCameraData(mediaDataList);
@@ -93,7 +92,7 @@ public class MediaSelectBiz implements IMediaSelectBiz {
 		MediaSelectActivity ui = ui();
 		if (ui != null) {
 			if (config().isCompress) { // 启动压缩
-				MediaHelper.mediaManage().bind().compressMediaData(ui, config(), ui.getMediaSelectAdapter() != null ? ui.getMediaSelectAdapter().getSelectData() : null, new OnCompressListener() {
+				MediaHelper.mediaUiManage().bind().compressMediaData(ui, config(), ui.getMediaSelectAdapter() != null ? ui.getMediaSelectAdapter().getSelectData() : null, new OnCompressListener() {
 
 					@Override public void compressSuccess(List<MediaData> list) {
 						super.compressSuccess(list);

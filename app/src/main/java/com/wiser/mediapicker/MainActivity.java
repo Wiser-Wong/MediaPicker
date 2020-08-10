@@ -95,7 +95,9 @@ public class MainActivity extends AppCompatActivity {
 		findViewById(R.id.btn_media).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				MediaHelper.mediaManage().selectPageSkip(MainActivity.this,new MediaConfig.Builder()
+
+
+				MediaHelper.mediaUiManage().selectPageSkip(MainActivity.this,new MediaConfig.Builder()
 						.ofSpanCount(3)
 						.ofSurplusCount(10)
 						.ofCheckUiNumType()
@@ -103,7 +105,12 @@ public class MainActivity extends AppCompatActivity {
 						.ofCompress()
 						.ofCompressParameter(100,100,100,Environment.getExternalStorageDirectory()+"/compress/photo")
 						.ofCompressPhotoSize(60)
+						.ofCamera()
+//						.ofCameraCrop()
+						.ofCropWidth(400)
+						.ofCropHeight(800)
 						.build());
+
 			}
 		});
 	}

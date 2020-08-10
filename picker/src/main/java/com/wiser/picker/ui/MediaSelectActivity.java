@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.wiser.picker.BuildConfig;
 import com.wiser.picker.R;
 import com.wiser.picker.api.config.MediaConstants;
 import com.wiser.picker.api.model.MediaData;
@@ -29,6 +30,7 @@ import com.wiser.picker.lib.MediaHelper;
 import com.wiser.picker.ui.config.MediaConfig;
 import com.wiser.picker.ui.utils.CameraTool;
 import com.wiser.picker.ui.utils.PickerHelper;
+import com.wiser.picker.ui.utils.ThemeTool;
 
 import java.io.File;
 import java.text.MessageFormat;
@@ -68,7 +70,7 @@ public class MediaSelectActivity extends FragmentActivity implements View.OnClic
 		// 沉浸式
 		PickerHelper.setStatusBarFullTransparent(this);
 		// 主题自定义
-		setTheme(MediaHelper.mediaManage().bind().customTheme());
+		setTheme(MediaHelper.mediaUiManage().bind().customTheme());
 		setContentView(R.layout.media_select_act);
 
 		RecyclerView rlvPhotoSelect = findViewById(R.id.rlv_media_select);
@@ -137,7 +139,7 @@ public class MediaSelectActivity extends FragmentActivity implements View.OnClic
 			this.finish();
 			overridePendingTransition(R.anim.slide_bottom_in, R.anim.slide_bottom_out);
 		} else if (id == R.id.tv_media_select_preview) {// 预览
-			MediaHelper.mediaManage().bind().onPreviewClick(view, iMediaSelectBiz.getSourceMediaDataList(), mediaSelectAdapter.getSelectData(), iMediaSelectBiz.config().surplusCount, 0);
+			MediaHelper.mediaUiManage().bind().onPreviewClick(view, iMediaSelectBiz.getSourceMediaDataList(), mediaSelectAdapter.getSelectData(), iMediaSelectBiz.config().surplusCount, 0);
 		} else if (id == R.id.tv_media_select_finish) {// 完成
 			iMediaSelectBiz.handleCompressPhoto();
 		} else if (id == R.id.ll_media_folder_select) {// 全部相册
@@ -159,23 +161,23 @@ public class MediaSelectActivity extends FragmentActivity implements View.OnClic
 		if (mediaSelectAdapter != null && mediaSelectAdapter.getSelectCount() > 0) {
 			// 预览
 			tvPhotoSelectPreview.setEnabled(true);
-			tvPhotoSelectPreview.setTextColor(Color.WHITE);
+			tvPhotoSelectPreview.setTextColor(ThemeTool.getThemeCompleteTextSelectColor(this));
 			tvPhotoSelectPreview.setText(MessageFormat.format("预览({0})", mediaSelectAdapter.getSelectCount()));
 			// 完成
 			tvPhotoSelectFinish.setEnabled(true);
-			tvPhotoSelectFinish.setBackgroundResource(R.drawable.shape_select_finish_bg_st);
+			tvPhotoSelectFinish.setBackgroundResource(ThemeTool.getThemeCompleteBtnSelectBg(this));
 			tvPhotoSelectFinish.setText(MessageFormat.format("完成({0}/{1})", count, iMediaSelectBiz.config().surplusCount));
-			tvPhotoSelectFinish.setTextColor(Color.WHITE);
+			tvPhotoSelectFinish.setTextColor(ThemeTool.getThemeCompleteTextSelectColor(this));
 		} else {
 			// 预览
 			tvPhotoSelectPreview.setEnabled(false);
-			tvPhotoSelectPreview.setTextColor(Color.parseColor("#50ffffff"));
+			tvPhotoSelectPreview.setTextColor(ThemeTool.getThemeCompleteTextUnSelectColor(this));
 			tvPhotoSelectPreview.setText("预览");
 			// 完成
 			tvPhotoSelectFinish.setEnabled(false);
-			tvPhotoSelectFinish.setBackgroundResource(R.drawable.shape_select_finish_bg_df);
+			tvPhotoSelectFinish.setBackgroundResource(ThemeTool.getThemeCompleteBtnUnSelectBg(this));
 			tvPhotoSelectFinish.setText("完成");
-			tvPhotoSelectFinish.setTextColor(Color.parseColor("#50ffffff"));
+			tvPhotoSelectFinish.setTextColor(ThemeTool.getThemeCompleteTextUnSelectColor(this));
 		}
 	}
 
@@ -190,7 +192,7 @@ public class MediaSelectActivity extends FragmentActivity implements View.OnClic
 			if (iMediaSelectBiz.config().isCameraCrop) {
 				Uri uri;
 				if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) uri = Uri.fromFile(new File(iMediaSelectBiz.getOutFilePath()));
-				else uri = FileProvider.getUriForFile(this, MediaConstants.AUTHORITY, new File(iMediaSelectBiz.getOutFilePath()));
+				else uri = FileProvider.getUriForFile(this, this.getPackageName().concat(".fileprovider"), new File(iMediaSelectBiz.getOutFilePath()));
 				// 裁剪
 				CameraTool.cropPhoto(this, uri, new File(iMediaSelectBiz.getOutFilePath()),
 						iMediaSelectBiz.config().cropWidth > 0 ? iMediaSelectBiz.config().cropWidth : MediaConstants.DEFAULT_CROP_WIDTH,

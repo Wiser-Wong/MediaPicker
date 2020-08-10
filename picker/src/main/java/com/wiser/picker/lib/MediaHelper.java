@@ -2,8 +2,9 @@ package com.wiser.picker.lib;
 
 import com.wiser.picker.api.core.query.IMediaQueryManage;
 import com.wiser.picker.api.core.query.MediaQueryManage;
-import com.wiser.picker.ui.core.MediaManage;
-import com.wiser.picker.ui.core.IMediaBind;
+import com.wiser.picker.ui.core.IMediaUiManage;
+import com.wiser.picker.ui.core.MediaUiManage;
+import com.wiser.picker.ui.core.IMediaUiBind;
 
 /**
  * @author Wiser
@@ -12,11 +13,8 @@ import com.wiser.picker.ui.core.IMediaBind;
  */
 public final class MediaHelper {
 
-	// 媒体查询管理类
-	private static IMediaQueryManage	mediaQueryManage	= null;
-
 	// 媒体管理类
-	private static MediaManage			mediaManage			= null;
+	private static IMediaUiManage mediaUiManage = null;
 
 	/**
 	 * 媒体查询管理
@@ -24,10 +22,7 @@ public final class MediaHelper {
 	 * @return
 	 */
 	public static IMediaQueryManage mediaQueryManage() {
-		if (mediaQueryManage == null) synchronized (MediaQueryManage.class) {
-			if (mediaQueryManage == null) mediaQueryManage = new MediaQueryManage();
-		}
-		return mediaQueryManage;
+		return new MediaQueryManage();
 	}
 
 	// 扩展功能
@@ -37,30 +32,30 @@ public final class MediaHelper {
 
 	public static class Bind {
 
-		IMediaBind iMediaBind;
+		IMediaUiBind iMediaUiBind;
 
-		public Bind setBind(IMediaBind iMediaBind) {
-			this.iMediaBind = iMediaBind;
+		public Bind setBind(IMediaUiBind iMediaUiBind) {
+			this.iMediaUiBind = iMediaUiBind;
 			return this;
 		}
 
 		// 注入
 		public void inject() {
-			if (this.iMediaBind == null) this.iMediaBind = IMediaBind.defaultBind;
+			if (this.iMediaUiBind == null) this.iMediaUiBind = IMediaUiBind.defaultBind;
 
-			mediaManage = new MediaManage();
-			mediaManage.init(iMediaBind);
+			mediaUiManage = new MediaUiManage();
+			mediaUiManage.init(iMediaUiBind);
 		}
 	}
 
 	/**
-	 * 选择媒体管理
+	 * 媒体Ui管理
 	 * 
 	 * @return
 	 */
-	public static MediaManage mediaManage() {
-		if (mediaManage != null) return mediaManage;
-		return new MediaManage();
+	public static IMediaUiManage mediaUiManage() {
+		if (mediaUiManage != null) return mediaUiManage;
+		return new MediaUiManage();
 	}
 
 }

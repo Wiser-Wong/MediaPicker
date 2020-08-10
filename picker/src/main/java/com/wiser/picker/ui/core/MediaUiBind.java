@@ -25,7 +25,7 @@ import java.util.List;
  * 
  *         媒体扩展方法
  */
-public class MediaBind implements IMediaBind {
+public class MediaUiBind implements IMediaUiBind {
 
 	/**
 	 * 自定义主题
@@ -113,13 +113,13 @@ public class MediaBind implements IMediaBind {
 			@Override public void compressLoading() {
 				super.compressLoading();
 				// 显示查询loading
-				MediaHelper.mediaManage().bind().customLoading((FragmentActivity) activity, false);
+				MediaHelper.mediaUiManage().bind().customLoading((FragmentActivity) activity, false);
 			}
 
 			@Override public void compressSuccess(List<MediaData> list) {
 				super.compressSuccess(list);
 				// 消失查询loading
-				MediaHelper.mediaManage().bind().customLoading((FragmentActivity) activity, true);
+				MediaHelper.mediaUiManage().bind().customLoading((FragmentActivity) activity, true);
 				onCompressListener.compressSuccess(list);
 			}
 		}).execute(newMediaDataList);

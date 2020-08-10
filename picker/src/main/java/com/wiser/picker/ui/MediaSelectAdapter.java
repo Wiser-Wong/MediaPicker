@@ -15,6 +15,7 @@ import com.wiser.picker.api.model.MediaData;
 import com.wiser.picker.api.utils.DateHelper;
 import com.wiser.picker.ui.base.BasePhotoAdapter;
 import com.wiser.picker.ui.base.BasePhotoHolder;
+import com.wiser.picker.ui.utils.ThemeTool;
 import com.wiser.picker.ui.weight.SquareFrameLayout;
 
 import java.text.MessageFormat;
@@ -108,13 +109,13 @@ public class MediaSelectAdapter extends BasePhotoAdapter<MediaData, BasePhotoHol
 
 					@Override public void onClick(View v) {
 						// 预览图片
-						MediaHelper.mediaManage().bind().onPreviewClick(v, getItems(), getSelectData(), ((MediaSelectActivity) getContext()).getBiz().config().surplusCount, position);
+						MediaHelper.mediaUiManage().bind().onPreviewClick(v, getItems(), getSelectData(), ((MediaSelectActivity) getContext()).getBiz().config().surplusCount, position);
 					}
 				});
 			}
 
 			// 加载图片
-			MediaHelper.mediaManage().bind().loadPic(ivSelectPhoto, mediaData.path);
+			MediaHelper.mediaUiManage().bind().loadPic(ivSelectPhoto, mediaData.path);
 
 			// 视频或者图片
 			if (mediaData.mediaType == MediaConstants.MEDIA_VIDEO_TYPE) {
@@ -128,9 +129,9 @@ public class MediaSelectAdapter extends BasePhotoAdapter<MediaData, BasePhotoHol
 			if (mediaData.isSelect) {
 				// 默认选中UI
 				if (((MediaSelectActivity) getContext()).getBiz().config().checkUiType == MediaConstants.CHECK_UI_DEFAULT_TYPE) {
-					tvSelectCheck.setBackgroundResource(R.drawable.media_selected);
+					tvSelectCheck.setBackgroundResource(ThemeTool.getThemeCheckDfIcon(getContext()));
 				} else { // 选中号码展示UI
-					tvSelectCheck.setBackgroundResource(R.drawable.media_selected_num);
+					tvSelectCheck.setBackgroundResource(ThemeTool.getThemeCheckNumIcon(getContext()));
 					// 如果选择的号码大于取消选中时的号吗 都要减去1 然后更新数据
 					if (cancelSelectNum > 0 && mediaData.selectNum > cancelSelectNum) {
 						mediaData.selectNum = mediaData.selectNum - 1;
@@ -142,9 +143,9 @@ public class MediaSelectAdapter extends BasePhotoAdapter<MediaData, BasePhotoHol
 			} else {
 				// 默认选中UI类型
 				if (((MediaSelectActivity) getContext()).getBiz().config().checkUiType == MediaConstants.CHECK_UI_DEFAULT_TYPE) {
-					tvSelectCheck.setBackgroundResource(R.drawable.media_unselected);
+					tvSelectCheck.setBackgroundResource(ThemeTool.getThemeUnCheckDfIcon(getContext()));
 				} else { // 选中号码展示的UI类型
-					tvSelectCheck.setBackgroundResource(R.drawable.media_unselected_num);
+					tvSelectCheck.setBackgroundResource(ThemeTool.getThemeUnCheckNumIcon(getContext()));
 					tvSelectCheck.setText("");
 				}
 				flCover.setVisibility(View.GONE);
@@ -155,7 +156,7 @@ public class MediaSelectAdapter extends BasePhotoAdapter<MediaData, BasePhotoHol
 
 				@Override public void onClick(View v) {
 					if (selectCount >= surplusCount && !mediaData.isSelect) {
-						MediaHelper.mediaManage().bind().maxSelectToastTip(getContext(), surplusCount);
+						MediaHelper.mediaUiManage().bind().maxSelectToastTip(getContext(), surplusCount);
 						return;
 					}
 					MediaData mediaData1 = getItem(getAdapterPosition());

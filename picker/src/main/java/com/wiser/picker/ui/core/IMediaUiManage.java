@@ -9,19 +9,19 @@ import com.wiser.picker.ui.config.MediaConfig;
  * 
  *         媒体管理
  */
-public interface IMediaManage {
+public interface IMediaUiManage {
 
 	/**
 	 * 初始化
 	 */
-	void init(IMediaBind iMediaBind);
+	void init(IMediaUiBind iMediaUiBind);
 
 	/**
 	 * 扩展
 	 * 
 	 * @return
 	 */
-	IMediaBind bind();
+	IMediaUiBind bind();
 
 	/**
 	 * 跳转选择媒体界面

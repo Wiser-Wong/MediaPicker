@@ -10,17 +10,17 @@ import com.wiser.picker.ui.config.MediaConfig;
  * 
  *         媒体管理
  */
-public class MediaManage implements IMediaManage {
+public class MediaUiManage implements IMediaUiManage {
 
-	private IMediaBind iMediaBind;
+	private IMediaUiBind iMediaUiBind;
 
-	@Override public void init(IMediaBind iMediaBind) {
-		this.iMediaBind = iMediaBind;
+	@Override public void init(IMediaUiBind iMediaUiBind) {
+		this.iMediaUiBind = iMediaUiBind;
 	}
 
-	@Override public IMediaBind bind() {
-		if (iMediaBind != null) return iMediaBind;
-		return IMediaBind.defaultBind;
+	@Override public IMediaUiBind bind() {
+		if (iMediaUiBind != null) return iMediaUiBind;
+		return IMediaUiBind.defaultBind;
 	}
 
 	/**

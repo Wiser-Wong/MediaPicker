@@ -7,6 +7,15 @@
         <item name="themeListBg">@color/themeListBg</item>
         <item name="themeCoverBg">@color/themeCoverBg</item>
         <item name="themeCancelIcon">@drawable/media_close_icon</item>
+        <item name="themeCompleteTextUnSelectColor">@color/themeCompleteTextUnSelectColor</item>
+        <item name="themeCompleteTextSelectColor">@color/themeCompleteTextSelectColor</item>
+        <item name="themeCompleteBtnUnSelectBg">@drawable/shape_select_finish_bg_df</item>
+        <item name="themeCompleteBtnSelectBg">@drawable/shape_select_finish_bg_st</item>
+        <item name="themeLoadFailPicDefault">@drawable/media_error</item>
+        <item name="themeUnCheckDfIcon">@drawable/media_unselected</item>
+        <item name="themeCheckDfIcon">@drawable/media_selected</item>
+        <item name="themeUnCheckNumIcon">@drawable/media_unselected_num</item>
+        <item name="themeCheckNumIcon">@drawable/media_selected_num</item>
     </style>
 
     <!-- 默认Dialog弹窗风格-->

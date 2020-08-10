@@ -92,6 +92,4 @@ public interface MediaConstants {
 	// 选中图片Check UI默认类型
 	int		CHECK_UI_DEFAULT_TYPE				= 7001;
 
-	String	AUTHORITY							= "com.wiser.picker.fileprovider";
-
 }

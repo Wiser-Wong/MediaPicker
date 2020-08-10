@@ -9,6 +9,6 @@ public class MainApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        MediaHelper.newBind().setBind(new CustomBind()).inject();
+        MediaHelper.newBind().setBind(new CustomUiBind()).inject();
     }
 }
