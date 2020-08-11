@@ -7,7 +7,7 @@ import com.wiser.picker.api.config.MediaConstants;
 
 /**
  * @author Wiser
- * 
+ *
  *         媒体设置 配置
  */
 public class MediaConfig implements Parcelable {
@@ -146,37 +146,37 @@ public class MediaConfig implements Parcelable {
 
 	public static class Builder {
 
-		private int		surplusCount	= MediaConstants.DEFAULT_SURPLUS_COUNT;
+		private int		surplusCount	= MediaConstants.DEFAULT_SURPLUS_COUNT;		// 剩余可选数量
 
-		private int		spanCount		= MediaConstants.DEFAULT_SPAN_COUNT;
+		private int		spanCount		= MediaConstants.DEFAULT_SPAN_COUNT;		// 展示列数
 
 		private int		queryMode		= MediaConstants.LOAD_LOCAL_SYS_PHOTO_MODE;	// 查询模式 默认只查图片
 
 		private int		showMode		= MediaConstants.MEDIA_MODE;				// 展示模式 默认媒体模式没有相机
 
-		private String	folderPath;
+		private String	folderPath;													// 查询的文件夹路径
 
 		private String	compressPath	= MediaConstants.DEFAULT_COMPRESS_PATH;		// 默认压缩路径
 
-		private boolean	isCompress;
+		private boolean	isCompress;													// 是否压缩
 
-		private int		compressWidth;
+		private int		compressWidth;												// 压缩宽度
 
-		private int		compressHeight;
+		private int		compressHeight;												// 压缩高度
 
-		private int		compressQuality;
+		private int		compressQuality;											// 压缩质量
 
-		private long	compressPhotoSize;
+		private long	compressPhotoSize;											// 压缩图片大小
 
-		private long	compressVideoSize;
+		private long	compressVideoSize;											// 压缩视频大小
 
-		private boolean	isCameraCrop;
+		private boolean	isCameraCrop;												// 是否拍照裁剪
 
-		private int		cropWidth;
+		private int		cropWidth;													// 裁剪宽度
 
-		private int		cropHeight;
+		private int		cropHeight;													// 裁剪高度
 
-		private boolean	isFolderDisplay;
+		private boolean	isFolderDisplay;											// 是否显示文件夹分类
 
 		public long		queryPicLimitSize;											// 图片查询限制大小
 
@@ -184,7 +184,7 @@ public class MediaConfig implements Parcelable {
 
 		public long		queryVideoLimitDuration;									// 视频查询限制时长
 
-		public int		checkUiType		= MediaConstants.CHECK_UI_DEFAULT_TYPE;		// 选中媒体的Check样式
+		public int		checkUiType		= MediaConstants.CHECK_UI_DEFAULT_TYPE;		// 选中媒体的Check号码样式
 
 		public Builder() {}
 
@@ -211,185 +211,85 @@ public class MediaConfig implements Parcelable {
 			checkUiType = config.checkUiType;
 		}
 
+		/**
+		 * 配置剩余可选数量
+		 *
+		 * @param surplusCount
+		 *            数量
+		 * @return
+		 */
 		public Builder ofSurplusCount(int surplusCount) {
 			this.surplusCount = surplusCount;
 			return this;
 		}
 
+		/**
+		 * 配置展示列数
+		 *
+		 * @param spanCount
+		 *            列数
+		 * @return
+		 */
 		public Builder ofSpanCount(int spanCount) {
 			this.spanCount = spanCount;
 			return this;
 		}
 
+		/**
+		 * 配置选中check号码样式
+		 *
+		 * @return
+		 */
 		public Builder ofCheckUiNumType() {
 			this.checkUiType = MediaConstants.CHECK_UI_NUM_TYPE;
 			return this;
 		}
 
-		public Builder queryMode(int queryMode, String... folderPath) {
-			this.queryMode = queryMode;
-			if (folderPath != null && folderPath.length > 0) {
-				this.folderPath = folderPath[0];
-			}
-			return this;
-		}
-
-		public Builder queryPic() {
-			this.queryMode = MediaConstants.LOAD_LOCAL_SYS_PHOTO_MODE;
-			return this;
-		}
-
-		public Builder queryPhotoBySize(long queryPicLimitSize) {
-			this.queryMode = MediaConstants.LOAD_LOCAL_SYS_PHOTO_MODE;
-			this.queryPicLimitSize = queryPicLimitSize;
-			return this;
-		}
-
-		public Builder queryPhotoFolder(String folderPath) {
-			this.queryMode = MediaConstants.LOAD_FOLDER_PHOTO_MODE;
-			this.folderPath = folderPath;
-			return this;
-		}
-
-		public Builder queryPhotoFolderBySize(String folderPath, long limitSize) {
-			this.queryMode = MediaConstants.LOAD_FOLDER_PHOTO_MODE;
-			this.folderPath = folderPath;
-			this.queryPicLimitSize = limitSize;
-			return this;
-		}
-
-		public Builder queryVideo() {
-			this.queryMode = MediaConstants.LOAD_LOCAL_SYS_VIDEO_MODE;
-			return this;
-		}
-
-		public Builder queryVideoBySize(long limitSize) {
-			this.queryMode = MediaConstants.LOAD_LOCAL_SYS_VIDEO_MODE;
-			this.queryVideoLimitSize = limitSize;
-			return this;
-		}
-
-		public Builder queryVideoByDuration(long videoLimitDuration) {
-			this.queryMode = MediaConstants.LOAD_LOCAL_SYS_VIDEO_MODE;
-			this.queryVideoLimitDuration = videoLimitDuration;
-			return this;
-		}
-
-		public Builder queryVideoFolder(String folderPath) {
-			this.queryMode = MediaConstants.LOAD_FOLDER_ALL_MODE;
-			this.folderPath = folderPath;
-			return this;
-		}
-
-		public Builder queryVideoFolderModeBySize(String folderPath, long limitSize) {
-			this.queryMode = MediaConstants.LOAD_FOLDER_ALL_MODE;
-			this.folderPath = folderPath;
-			this.queryVideoLimitSize = limitSize;
-			return this;
-		}
-
-		public Builder queryVideoFolderByDuration(String folderPath, long videoLimitDuration) {
-			this.queryMode = MediaConstants.LOAD_FOLDER_ALL_MODE;
-			this.folderPath = folderPath;
-			this.queryVideoLimitDuration = videoLimitDuration;
-			return this;
-		}
-
-		public Builder queryAll() {
-			this.queryMode = MediaConstants.LOAD_LOCAL_SYS_ALL_MODE;
-			return this;
-		}
-
-		public Builder queryAllBySize(long picLimitSize, long videoLimitSize) {
-			this.queryMode = MediaConstants.LOAD_LOCAL_SYS_ALL_MODE;
-			this.queryPicLimitSize = picLimitSize;
-			this.queryVideoLimitSize = videoLimitSize;
-			return this;
-		}
-
-		public Builder queryAllBySizeAndDuration(long picLimitSize, long videoLimitDuration) {
-			this.queryMode = MediaConstants.LOAD_LOCAL_SYS_ALL_MODE;
-			this.queryPicLimitSize = picLimitSize;
-			this.queryVideoLimitDuration = videoLimitDuration;
-			return this;
-		}
-
-		public Builder queryAllByPicSize(long picLimitSize) {
-			this.queryMode = MediaConstants.LOAD_LOCAL_SYS_ALL_MODE;
-			this.queryPicLimitSize = picLimitSize;
-			return this;
-		}
-
-		public Builder queryAllByVideoSize(long videoLimitSize) {
-			this.queryMode = MediaConstants.LOAD_LOCAL_SYS_ALL_MODE;
-			this.queryVideoLimitSize = videoLimitSize;
-			return this;
-		}
-
-		public Builder queryAllByVideoDuration(long videoLimitDuration) {
-			this.queryMode = MediaConstants.LOAD_LOCAL_SYS_ALL_MODE;
-			this.queryVideoLimitDuration = videoLimitDuration;
-			return this;
-		}
-
-		public Builder queryAllFolder(String folderPath) {
-			this.queryMode = MediaConstants.LOAD_FOLDER_ALL_MODE;
-			this.folderPath = folderPath;
-			return this;
-		}
-
-		public Builder queryAllFolderBySize(String folderPath, long picLimitSize, long videoLimitSize) {
-			this.queryMode = MediaConstants.LOAD_FOLDER_ALL_MODE;
-			this.folderPath = folderPath;
-			this.queryPicLimitSize = picLimitSize;
-			this.queryVideoLimitSize = videoLimitSize;
-			return this;
-		}
-
-		public Builder queryAllFolderBySizeAndDuration(String folderPath, long picLimitSize, long videoLimitDuration) {
-			this.queryMode = MediaConstants.LOAD_FOLDER_ALL_MODE;
-			this.folderPath = folderPath;
-			this.queryPicLimitSize = picLimitSize;
-			this.queryVideoLimitDuration = videoLimitDuration;
-			return this;
-		}
-
-		public Builder queryAllFolderByPicSize(String folderPath, long picLimitSize) {
-			this.queryMode = MediaConstants.LOAD_FOLDER_ALL_MODE;
-			this.folderPath = folderPath;
-			this.queryPicLimitSize = picLimitSize;
-			return this;
-		}
-
-		public Builder queryAllFolderByVideoSize(String folderPath, long videoLimitSize) {
-			this.queryMode = MediaConstants.LOAD_FOLDER_ALL_MODE;
-			this.folderPath = folderPath;
-			this.queryVideoLimitSize = videoLimitSize;
-			return this;
-		}
-
-		public Builder queryAllFolderByVideoDuration(String folderPath, long videoLimitDuration) {
-			this.queryMode = MediaConstants.LOAD_FOLDER_ALL_MODE;
-			this.folderPath = folderPath;
-			this.queryVideoLimitDuration = videoLimitDuration;
-			return this;
-		}
-
+		/**
+		 * 配置拍照
+		 *
+		 * @return
+		 */
 		public Builder ofCamera() {
 			this.showMode = MediaConstants.CAMERA_MODE;
 			return this;
 		}
 
+		/**
+		 * 配置压缩路径
+		 *
+		 * @param compressPath
+		 *            路径
+		 * @return
+		 */
 		public Builder ofCompressPath(String compressPath) {
 			this.compressPath = compressPath;
 			return this;
 		}
 
+		/**
+		 * 配置压缩
+		 *
+		 * @return
+		 */
 		public Builder ofCompress() {
 			isCompress = true;
 			return this;
 		}
 
+		/**
+		 * 配置压缩参数，将参数整合成统一管理
+		 *
+		 * @param compressWidth
+		 *            宽
+		 * @param compressHeight
+		 *            高
+		 * @param compressQuality
+		 *            质量（0-100）
+		 * @param compressPath
+		 *            路径
+		 * @return
+		 */
 		public Builder ofCompressParameter(int compressWidth, int compressHeight, int compressQuality, String compressPath) {
 			this.compressWidth = compressWidth;
 			this.compressHeight = compressHeight;
@@ -398,48 +298,439 @@ public class MediaConfig implements Parcelable {
 			return this;
 		}
 
+		/**
+		 * 配置压缩宽度
+		 *
+		 * @param compressWidth
+		 *            宽度
+		 * @return
+		 */
 		public Builder ofCompressWidth(int compressWidth) {
 			this.compressWidth = compressWidth;
 			return this;
 		}
 
+		/**
+		 * 配置压缩高度
+		 *
+		 * @param compressHeight
+		 *            高度
+		 * @return
+		 */
 		public Builder ofCompressHeight(int compressHeight) {
 			this.compressHeight = compressHeight;
 			return this;
 		}
 
+		/**
+		 * 配置压缩质量
+		 *
+		 * @param compressQuality
+		 *            质量 0 - 100
+		 * @return
+		 */
 		public Builder ofCompressQuality(int compressQuality) {
 			this.compressQuality = compressQuality;
 			return this;
 		}
 
+		/**
+		 * 配置压缩图片大小
+		 *
+		 * @param compressPhotoSize
+		 *            大小 单位（kb）
+		 * @return
+		 */
 		public Builder ofCompressPhotoSize(long compressPhotoSize) {
 			this.compressPhotoSize = compressPhotoSize;
 			return this;
 		}
 
+		/**
+		 * 配置压缩视频大小
+		 *
+		 * @param compressVideoSize
+		 *            大小 单位（kb）
+		 * @return
+		 */
 		public Builder ofCompressVideoSize(long compressVideoSize) {
 			this.compressVideoSize = compressVideoSize;
 			return this;
 		}
 
+		/**
+		 * 配置拍照裁剪
+		 *
+		 * @return
+		 */
 		public Builder ofCameraCrop() {
 			isCameraCrop = true;
 			return this;
 		}
 
+		/**
+		 * 配置拍照裁剪宽度
+		 *
+		 * @param cropWidth
+		 *            宽度
+		 * @return
+		 */
 		public Builder ofCropWidth(int cropWidth) {
 			this.cropWidth = cropWidth;
 			return this;
 		}
 
+		/**
+		 * 配置拍照裁剪高度
+		 *
+		 * @param cropHeight
+		 *            高度
+		 * @return
+		 */
 		public Builder ofCropHeight(int cropHeight) {
 			this.cropHeight = cropHeight;
 			return this;
 		}
 
+		/**
+		 * 配置文件夹分类样式
+		 *
+		 * @return
+		 */
 		public Builder ofFolder() {
 			this.isFolderDisplay = true;
+			return this;
+		}
+
+		/****************************** 查询配置 以下是配置查询只能单独配置一个，配置多个会以最后一个配置来查询 **************************************/
+
+		/**
+		 * 配置查询模式
+		 *
+		 * @param queryMode
+		 *            模式
+		 * @param folderPath
+		 *            文件夹路径
+		 * @return
+		 */
+		public Builder queryMode(int queryMode, String... folderPath) {
+			this.queryMode = queryMode;
+			if (folderPath != null && folderPath.length > 0) {
+				this.folderPath = folderPath[0];
+			}
+			return this;
+		}
+
+		/**
+		 * 查询本地所有图片
+		 *
+		 * @return
+		 */
+		public Builder queryPhoto() {
+			this.queryMode = MediaConstants.LOAD_LOCAL_SYS_PHOTO_MODE;
+			return this;
+		}
+
+		/**
+		 * 查询本地所有视频
+		 *
+		 * @return
+		 */
+		public Builder queryVideo() {
+			this.queryMode = MediaConstants.LOAD_LOCAL_SYS_VIDEO_MODE;
+			return this;
+		}
+
+		/**
+		 * 查询本地所有图片和视频
+		 *
+		 * @return
+		 */
+		public Builder queryAll() {
+			this.queryMode = MediaConstants.LOAD_LOCAL_SYS_ALL_MODE;
+			return this;
+		}
+
+		/**
+		 * 查询文件夹所有图片
+		 *
+		 * @param folderPath
+		 *            文件夹路径
+		 * @return
+		 */
+		public Builder queryPhotoForFolder(String folderPath) {
+			this.queryMode = MediaConstants.LOAD_FOLDER_PHOTO_MODE;
+			this.folderPath = folderPath;
+			return this;
+		}
+
+		/**
+		 * 查询文件夹所有视频
+		 *
+		 * @param folderPath
+		 *            文件夹路径
+		 * @return
+		 */
+		public Builder queryVideoForFolder(String folderPath) {
+			this.queryMode = MediaConstants.LOAD_FOLDER_ALL_MODE;
+			this.folderPath = folderPath;
+			return this;
+		}
+
+		/**
+		 * 查询文件夹所有图片和视频
+		 *
+		 * @param folderPath
+		 *            文件夹路径
+		 * @return
+		 */
+		public Builder queryAllForFolder(String folderPath) {
+			this.queryMode = MediaConstants.LOAD_FOLDER_ALL_MODE;
+			this.folderPath = folderPath;
+			return this;
+		}
+
+		/**
+		 * 查询本地系统所有图片，通过size大小 单位（kb）
+		 *
+		 * @param queryPicLimitSize
+		 *            大小限制 kb
+		 * @return
+		 */
+		public Builder queryPhotoBySize(long queryPicLimitSize) {
+			this.queryMode = MediaConstants.LOAD_LOCAL_SYS_PHOTO_MODE;
+			this.queryPicLimitSize = queryPicLimitSize;
+			return this;
+		}
+
+		/**
+		 * 查询文件夹所有图片，通过size大小 单位（kb）
+		 *
+		 * @param folderPath
+		 *            文件夹路径
+		 * @param limitSize
+		 *            大小限制 kb
+		 * @return
+		 */
+		public Builder queryPhotoForFolderBySize(String folderPath, long limitSize) {
+			this.queryMode = MediaConstants.LOAD_FOLDER_PHOTO_MODE;
+			this.folderPath = folderPath;
+			this.queryPicLimitSize = limitSize;
+			return this;
+		}
+
+		/**
+		 * 查询本地系统所有视频，通过size大小 单位（kb）
+		 *
+		 * @param limitSize
+		 *            大小 kb
+		 * @return
+		 */
+		public Builder queryVideoBySize(long limitSize) {
+			this.queryMode = MediaConstants.LOAD_LOCAL_SYS_VIDEO_MODE;
+			this.queryVideoLimitSize = limitSize;
+			return this;
+		}
+
+		/**
+		 * 查询本地系统所有视频，通过duration时长 单位（s）
+		 *
+		 * @param videoLimitDuration
+		 *            时长 s
+		 * @return
+		 */
+		public Builder queryVideoByDuration(long videoLimitDuration) {
+			this.queryMode = MediaConstants.LOAD_LOCAL_SYS_VIDEO_MODE;
+			this.queryVideoLimitDuration = videoLimitDuration;
+			return this;
+		}
+
+		/**
+		 * 查询文件夹所有视频，通过size大小 单位（kb）
+		 *
+		 * @param folderPath
+		 *            文件夹路径
+		 * @param limitSize
+		 *            大小 kb
+		 * @return
+		 */
+		public Builder queryVideoForFolderBySize(String folderPath, long limitSize) {
+			this.queryMode = MediaConstants.LOAD_FOLDER_ALL_MODE;
+			this.folderPath = folderPath;
+			this.queryVideoLimitSize = limitSize;
+			return this;
+		}
+
+		/**
+		 * 查询文件夹所有视频，通过duration时长 单位（s）
+		 * 
+		 * @param folderPath
+		 *            文件夹路径
+		 * @param videoLimitDuration
+		 *            视频限制时长 （s）
+		 * @return
+		 */
+		public Builder queryVideoForFolderByDuration(String folderPath, long videoLimitDuration) {
+			this.queryMode = MediaConstants.LOAD_FOLDER_ALL_MODE;
+			this.folderPath = folderPath;
+			this.queryVideoLimitDuration = videoLimitDuration;
+			return this;
+		}
+
+		/**
+		 * 查询本地系统所有图片和视频，通过图片size大小和视频size大小 单位（kb）
+		 * 
+		 * @param picLimitSize
+		 *            图片限制大小（kb）
+		 * @param videoLimitSize
+		 *            视频限制大小（kb）
+		 * @return
+		 */
+		public Builder queryAllBySize(long picLimitSize, long videoLimitSize) {
+			this.queryMode = MediaConstants.LOAD_LOCAL_SYS_ALL_MODE;
+			this.queryPicLimitSize = picLimitSize;
+			this.queryVideoLimitSize = videoLimitSize;
+			return this;
+		}
+
+		/**
+		 * 查询本地系统所有图片和视频，通过图片size大小和视频duration时长 size单位（kb） duration时长单位（s）
+		 * 
+		 * @param picLimitSize
+		 *            图片限制大小（kb）
+		 * @param videoLimitDuration
+		 *            视频限制时长（s）
+		 * @return
+		 */
+		public Builder queryAllBySizeAndDuration(long picLimitSize, long videoLimitDuration) {
+			this.queryMode = MediaConstants.LOAD_LOCAL_SYS_ALL_MODE;
+			this.queryPicLimitSize = picLimitSize;
+			this.queryVideoLimitDuration = videoLimitDuration;
+			return this;
+		}
+
+		/**
+		 * 查询本地系统所有图片和视频，通过图片size大小，视频无限制 单位（kb）
+		 * 
+		 * @param picLimitSize
+		 *            图片限制大小（kb）
+		 * @return
+		 */
+		public Builder queryAllByPicSize(long picLimitSize) {
+			this.queryMode = MediaConstants.LOAD_LOCAL_SYS_ALL_MODE;
+			this.queryPicLimitSize = picLimitSize;
+			return this;
+		}
+
+		/**
+		 * 查询本地系统所有图片和视频，通过视频size大小，图片无限制 单位（kb）
+		 * 
+		 * @param videoLimitSize
+		 *            视频限制大小（kb）
+		 * @return
+		 */
+		public Builder queryAllByVideoSize(long videoLimitSize) {
+			this.queryMode = MediaConstants.LOAD_LOCAL_SYS_ALL_MODE;
+			this.queryVideoLimitSize = videoLimitSize;
+			return this;
+		}
+
+		/**
+		 * 查询本地系统所有图片和视频，通过视频duration时长，图片无限制 单位（s）
+		 * 
+		 * @param videoLimitDuration
+		 *            视频限制时长（s）
+		 * @return
+		 */
+		public Builder queryAllByVideoDuration(long videoLimitDuration) {
+			this.queryMode = MediaConstants.LOAD_LOCAL_SYS_ALL_MODE;
+			this.queryVideoLimitDuration = videoLimitDuration;
+			return this;
+		}
+
+		/**
+		 * 查询文件夹所有图片和视频，通过图片size大小和视频size大小 单位（kb）
+		 * 
+		 * @param folderPath
+		 *            文件夹路径
+		 * @param picLimitSize
+		 *            图片限制大小 （kb）
+		 * @param videoLimitSize
+		 *            视频限制大小 （kb）
+		 * @return
+		 */
+		public Builder queryAllForFolderBySize(String folderPath, long picLimitSize, long videoLimitSize) {
+			this.queryMode = MediaConstants.LOAD_FOLDER_ALL_MODE;
+			this.folderPath = folderPath;
+			this.queryPicLimitSize = picLimitSize;
+			this.queryVideoLimitSize = videoLimitSize;
+			return this;
+		}
+
+		/**
+		 * 查询文件夹所有图片和视频，通过图片size大小和视频duration时长 size单位（kb） duration时长单位（s）
+		 * 
+		 * @param folderPath
+		 *            文件夹路径
+		 * @param picLimitSize
+		 *            图片限制大小（kb）
+		 * @param videoLimitDuration
+		 *            视频限制时长 （s）
+		 * @return
+		 */
+		public Builder queryAllForFolderBySizeAndDuration(String folderPath, long picLimitSize, long videoLimitDuration) {
+			this.queryMode = MediaConstants.LOAD_FOLDER_ALL_MODE;
+			this.folderPath = folderPath;
+			this.queryPicLimitSize = picLimitSize;
+			this.queryVideoLimitDuration = videoLimitDuration;
+			return this;
+		}
+
+		/**
+		 * 查询文件夹所有图片和视频，通过图片size大小，视频无限制 单位（kb）
+		 *
+		 * @param folderPath
+		 *            文件夹路径
+		 * @param picLimitSize
+		 *            图片限制大小 （kb）
+		 * @return
+		 */
+		public Builder queryAllForFolderByPicSize(String folderPath, long picLimitSize) {
+			this.queryMode = MediaConstants.LOAD_FOLDER_ALL_MODE;
+			this.folderPath = folderPath;
+			this.queryPicLimitSize = picLimitSize;
+			return this;
+		}
+
+		/**
+		 * 查询文件夹所有图片和视频，通过视频size大小，图片无限制 单位（kb）
+		 *
+		 * @param folderPath
+		 *            文件夹路径
+		 * @param videoLimitSize
+		 *            视频限制大小 （kb）
+		 * @return
+		 */
+		public Builder queryAllForFolderByVideoSize(String folderPath, long videoLimitSize) {
+			this.queryMode = MediaConstants.LOAD_FOLDER_ALL_MODE;
+			this.folderPath = folderPath;
+			this.queryVideoLimitSize = videoLimitSize;
+			return this;
+		}
+
+		/**
+		 * 查询文件夹所有图片和视频，通过视频duration时长，图片无限制 单位（s）
+		 * 
+		 * @param folderPath
+		 *            文件夹路径
+		 * @param videoLimitDuration
+		 *            视频限制时长 （s）
+		 * @return
+		 */
+		public Builder queryAllForFolderByVideoDuration(String folderPath, long videoLimitDuration) {
+			this.queryMode = MediaConstants.LOAD_FOLDER_ALL_MODE;
+			this.folderPath = folderPath;
+			this.queryVideoLimitDuration = videoLimitDuration;
 			return this;
 		}
 

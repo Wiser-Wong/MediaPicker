@@ -13,6 +13,7 @@
         <item name="themeCompleteTextUnSelectColor">#7D0000ff</item>
         <item name="themeCompleteTextSelectColor">#0000ff</item>
         <item name="themeCompleteBtnUnSelectBg">@drawable/finish_bg_df</item>
+        <item name="themeCompleteTextSize">10sp</item>
         <item name="themeCompleteBtnSelectBg">@drawable/finish_bg_st</item>
         <item name="themeUnCheckDfIcon">@drawable/media_unselected_num</item>
         <item name="themeCheckDfIcon">@drawable/media_selected_num</item>

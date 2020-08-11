@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/cl_media_select_title"
+        android:layout_above="@+id/cl_media_select_bottom"
         android:background="?attr/themeListBg"
         android:padding="3dp"/>
 
@@ -17,7 +18,7 @@
         android:id="@+id/cl_media_select_bottom"
         layout="@layout/media_select_bottom_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:layout_alignParentBottom="true" />
 
     <FrameLayout

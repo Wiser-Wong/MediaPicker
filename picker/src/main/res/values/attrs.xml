@@ -9,6 +9,7 @@
     <attr name="themeCompleteTextSelectColor" format="color" />
     <attr name="themeCompleteBtnUnSelectBg" format="reference" />
     <attr name="themeCompleteBtnSelectBg" format="reference" />
+    <attr name="themeCompleteTextSize" format="dimension" />
     <attr name="themeLoadFailPicDefault" format="reference" />
     <attr name="themeUnCheckDfIcon" format="reference" />
     <attr name="themeCheckDfIcon" format="reference" />

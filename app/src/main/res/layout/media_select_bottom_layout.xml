@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#7D000000">
+    android:layout_height="55dp"
+    android:background="#292929">
 
     <TextView
         android:id="@+id/tv_media_select_preview"
@@ -16,7 +16,6 @@
         android:text="预览"
         android:textColor="#50ffffff"
         android:textSize="15sp"
-        android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,19 +23,18 @@
         android:id="@+id/tv_media_select_finish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="14dp"
-        android:layout_marginRight="14dp"
-        android:layout_marginBottom="40dp"
-        android:background="@drawable/shape_select_finish_bg_df"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:background="?attr/themeCompleteBtnUnSelectBg"
         android:enabled="false"
         android:gravity="center"
-        android:paddingStart="31dp"
-        android:paddingTop="12dp"
-        android:paddingEnd="31dp"
-        android:paddingBottom="12dp"
-        android:text="自定义完成"
+        android:paddingStart="12dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="8dp"
+        android:text="完成"
         android:textColor="#50ffffff"
-        android:textSize="15sp"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

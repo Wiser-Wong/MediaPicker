@@ -11,6 +11,7 @@
         <item name="themeCompleteTextSelectColor">@color/themeCompleteTextSelectColor</item>
         <item name="themeCompleteBtnUnSelectBg">@drawable/shape_select_finish_bg_df</item>
         <item name="themeCompleteBtnSelectBg">@drawable/shape_select_finish_bg_st</item>
+        <item name="themeCompleteTextSize">15sp</item>
         <item name="themeLoadFailPicDefault">@drawable/media_error</item>
         <item name="themeUnCheckDfIcon">@drawable/media_unselected</item>
         <item name="themeCheckDfIcon">@drawable/media_selected</item>
