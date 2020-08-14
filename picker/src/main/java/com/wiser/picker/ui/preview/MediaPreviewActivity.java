@@ -158,7 +158,7 @@ public class MediaPreviewActivity extends FragmentActivity implements ViewPager.
 			// 完成
 			tvPreviewComplete.setEnabled(true);
 			tvPreviewComplete.setBackgroundResource(R.drawable.shape_select_finish_bg_st);
-			tvPreviewComplete.setText(MessageFormat.format("完成({0}/{1})", iMediaPreviewBiz.getSelectCount(), 9));
+			tvPreviewComplete.setText(MessageFormat.format("完成({0}/{1})", iMediaPreviewBiz.getSelectCount(), iMediaPreviewBiz.config().surplusCount));
 			tvPreviewComplete.setTextColor(Color.WHITE);
 		} else {
 			// 完成
