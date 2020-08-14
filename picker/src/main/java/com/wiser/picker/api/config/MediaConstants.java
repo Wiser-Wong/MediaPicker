@@ -80,16 +80,64 @@ public interface MediaConstants {
 	// 默认裁剪高
 	int		DEFAULT_CROP_HEIGHT					= 800;
 
+	/**************************** 跳转参数Key值 *********************************/
+
 	// 选择的媒体集合数据Key
 	String	INTENT_SELECT_MEDIA_KEY				= "INTENT_SELECT_MEDIA_KEY";
+
+	// 预览图片传递的所有媒体数据key
+	String	PREVIEW_MEDIA_ALL_DATA_KEY			= "PREVIEW_MEDIA_ALL_DATA_KEY";
+
+	// 预览图片传递的选择的媒体数据key
+	String	PREVIEW_MEDIA_SELECT_DATA_KEY		= "PREVIEW_MEDIA_SELECT_DATA_KEY";
+
+	// 预览媒体配置key
+	String	PREVIEW_MEDIA_CONFIG_KEY			= "PREVIEW_MEDIA_CONFIG_KEY";
+
+	// 预览单张图片Key
+	String	PREVIEW_SINGLE_PHOTO_KEY			= "PREVIEW_SINGLE_PHOTO_KEY";
+
+	// 预览单一视频Key
+	String	PREVIEW_SINGLE_VIDEO_KEY			= "PREVIEW_SINGLE_VIDEO_KEY";
+
+	// 预览媒体位置key
+	String	PREVIEW_MEDIA_INDEX_KEY				= "PREVIEW_MEDIA_INDEX_KEY";
+
+	// 剩余可选数量Key
+	String	SURPLUS_COUNT_KEY					= "SURPLUS_COUNT_KEY";
+
+	// 配置参数key
+	String	MEDIA_CONFIG_KEY					= "MEDIA_CONFIG_KEY";
+
+	// 预览类型key
+	String	PREVIEW_TYPE_KEY					= "PREVIEW_TYPE_KEY";
+
+	// 预览完成key
+	String	PREVIEW_MEDIA_COMPLETE_KEY			= "PREVIEW_MEDIA_COMPLETE_KEY";
+
+	// 预览完成value 用于判断是点击完成从预览返回到选择页面的
+	int		PREVIEW_MEDIA_COMPLETE_VALUE		= 9000;
+
+	/************************ 跳转请求码 ***************************************/
 
 	// 跳转图片选择页请求码
 	int		INTENT_SELECT_MEDIA_REQUEST_CODE	= 6000;
 
+	// 跳转图片预览页请求码
+	int		INTENT_PREVIEW_MEDIA_REQUEST_CODE	= 6001;
+
+	/************************ 选中媒体check样式类型 ***************************************/
 	// 选中图片Check UI 号码类型
 	int		CHECK_UI_NUM_TYPE					= 7000;
 
 	// 选中图片Check UI默认类型
 	int		CHECK_UI_DEFAULT_TYPE				= 7001;
+
+	/************************* 预览方式类型 *************************************/
+	// 预览图片模式
+	int		PREVIEW_PHOTO_TYPE					= 8000;
+
+	// 预览按钮模式
+	int		PREVIEW_BTN_TYPE					= 8001;
 
 }

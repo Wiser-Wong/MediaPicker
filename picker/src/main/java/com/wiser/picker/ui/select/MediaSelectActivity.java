@@ -1,10 +1,9 @@
-package com.wiser.picker.ui;
+package com.wiser.picker.ui.select;
 
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,7 +19,6 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.wiser.picker.BuildConfig;
 import com.wiser.picker.R;
 import com.wiser.picker.api.config.MediaConstants;
 import com.wiser.picker.api.model.MediaData;
@@ -139,7 +137,8 @@ public class MediaSelectActivity extends FragmentActivity implements View.OnClic
 			this.finish();
 			overridePendingTransition(R.anim.slide_bottom_in, R.anim.slide_bottom_out);
 		} else if (id == R.id.tv_media_select_preview) {// 预览
-			MediaHelper.mediaUiManage().bind().onPreviewClick(view, iMediaSelectBiz.getSourceMediaDataList(), mediaSelectAdapter.getSelectData(), iMediaSelectBiz.config().surplusCount, 0);
+			MediaHelper.mediaUiManage().bind().onPreviewClick(MediaSelectActivity.this, mediaSelectAdapter.getSelectData(), mediaSelectAdapter.getSelectData(), iMediaSelectBiz.config(),
+					MediaConstants.PREVIEW_BTN_TYPE, iMediaSelectBiz.config().surplusCount, 0);
 		} else if (id == R.id.tv_media_select_finish) {// 完成
 			iMediaSelectBiz.handleCompressPhoto();
 		} else if (id == R.id.ll_media_folder_select) {// 全部相册
@@ -164,20 +163,14 @@ public class MediaSelectActivity extends FragmentActivity implements View.OnClic
 			tvPhotoSelectPreview.setTextColor(ThemeTool.getThemeCompleteTextSelectColor(this));
 			tvPhotoSelectPreview.setText(MessageFormat.format("预览({0})", mediaSelectAdapter.getSelectCount()));
 			// 完成
-			tvPhotoSelectFinish.setEnabled(true);
-			tvPhotoSelectFinish.setBackgroundResource(ThemeTool.getThemeCompleteBtnSelectBg(this));
-			tvPhotoSelectFinish.setText(MessageFormat.format("完成({0}/{1})", count, iMediaSelectBiz.config().surplusCount));
-			tvPhotoSelectFinish.setTextColor(ThemeTool.getThemeCompleteTextSelectColor(this));
+			MediaHelper.mediaUiManage().bind().completeStateUiChange(tvPhotoSelectFinish, count, iMediaSelectBiz.config().surplusCount, true);
 		} else {
 			// 预览
 			tvPhotoSelectPreview.setEnabled(false);
 			tvPhotoSelectPreview.setTextColor(ThemeTool.getThemeCompleteTextUnSelectColor(this));
 			tvPhotoSelectPreview.setText("预览");
 			// 完成
-			tvPhotoSelectFinish.setEnabled(false);
-			tvPhotoSelectFinish.setBackgroundResource(ThemeTool.getThemeCompleteBtnUnSelectBg(this));
-			tvPhotoSelectFinish.setText("完成");
-			tvPhotoSelectFinish.setTextColor(ThemeTool.getThemeCompleteTextUnSelectColor(this));
+			MediaHelper.mediaUiManage().bind().completeStateUiChange(tvPhotoSelectFinish, count, iMediaSelectBiz.config().surplusCount, false);
 		}
 	}
 
@@ -208,6 +201,34 @@ public class MediaSelectActivity extends FragmentActivity implements View.OnClic
 		if (requestCode == MediaConstants.CROP_REQUEST_CODE) {
 			iMediaSelectBiz.setCameraResult();
 			this.finish();
+		}
+
+		// 预览回调
+		if (requestCode == MediaConstants.INTENT_PREVIEW_MEDIA_REQUEST_CODE) {
+			if (data != null) {
+				Bundle bundle = data.getExtras();
+				if (bundle != null) {
+					// 预览点击完成
+					if (bundle.getInt(MediaConstants.PREVIEW_MEDIA_COMPLETE_KEY, -1) == MediaConstants.PREVIEW_MEDIA_COMPLETE_VALUE) {
+						List<MediaData> selectData = bundle.getParcelableArrayList(MediaConstants.PREVIEW_MEDIA_SELECT_DATA_KEY);
+						iMediaSelectBiz.complete(selectData);
+						return;
+					}
+					// 预览返回
+					List<MediaData> mediaDataList = bundle.getParcelableArrayList(MediaConstants.PREVIEW_MEDIA_ALL_DATA_KEY);
+					List<MediaData> selectData = bundle.getParcelableArrayList(MediaConstants.PREVIEW_MEDIA_SELECT_DATA_KEY);
+					// 处理相机
+					if (iMediaSelectBiz.isCamera() && mediaDataList != null) {
+						MediaData cameraData = new MediaData();
+						cameraData.showMode = MediaConstants.CAMERA_MODE;
+						mediaDataList.add(0, cameraData);
+					}
+					// 更新Adapter适配器
+					if (mediaSelectAdapter != null) mediaSelectAdapter.setData(mediaDataList, selectData, selectData != null ? selectData.size() : 0);
+					// 更新按钮状态
+					updateBtnStateUi(selectData != null ? selectData.size() : 0);
+				}
+			}
 		}
 	}
 

@@ -1,4 +1,4 @@
-package com.wiser.picker.ui;
+package com.wiser.picker.ui.select;
 
 import android.content.Intent;
 import android.os.Parcelable;
@@ -50,6 +50,11 @@ public class MediaSelectBiz implements IMediaSelectBiz {
 		return new MediaConfig();
 	}
 
+	// 是否有相机
+	@Override public boolean isCamera() {
+		return config().showMode == MediaConstants.CAMERA_MODE;
+	}
+
 	// 加载媒体数据
 	@Override public void loadMediaData() {
 		MediaHelper.mediaQueryManage().loadMediasTask(ui(), config().queryMode, config().queryPicLimitSize, config().queryVideoLimitSize, config().queryVideoLimitDuration, new OnLoadMediaListener() {
@@ -76,17 +81,6 @@ public class MediaSelectBiz implements IMediaSelectBiz {
 		return sourceMediaDataList;
 	}
 
-	// 转换选择的数据
-	@Override public MediaData[] covertSelectData(List<MediaData> mediaDataList) {
-		if (mediaDataList == null) return null;
-		MediaData[] selectData = new MediaData[mediaDataList.size()];
-		for (int i = 0; i < mediaDataList.size(); i++) {
-			if (mediaDataList.get(i) == null) continue;
-			selectData[i] = mediaDataList.get(i);
-		}
-		return selectData;
-	}
-
 	// 执行压缩图片
 	@Override public void handleCompressPhoto() {
 		MediaSelectActivity ui = ui();
@@ -106,7 +100,7 @@ public class MediaSelectBiz implements IMediaSelectBiz {
 	}
 
 	// 完成
-	private void complete(List<MediaData> mediaDataList) {
+	@Override public void complete(List<MediaData> mediaDataList) {
 		MediaSelectActivity ui = ui();
 		if (ui != null) {
 			Intent intent = new Intent();
@@ -120,7 +114,7 @@ public class MediaSelectBiz implements IMediaSelectBiz {
 
 	// 设置拍照数据之后填充适配器
 	private void setCameraData(List<MediaData> mediaDataList) {
-		if (config().showMode == MediaConstants.CAMERA_MODE) {
+		if (isCamera()) {
 			MediaData cameraData = new MediaData();
 			cameraData.showMode = MediaConstants.CAMERA_MODE;
 			mediaDataList.add(0, cameraData);
@@ -159,6 +153,8 @@ public class MediaSelectBiz implements IMediaSelectBiz {
 	@Override public void onDetach() {
 		if (reference != null) reference.clear();
 		reference = null;
+		if (sourceMediaDataList != null) sourceMediaDataList.clear();
+		sourceMediaDataList = null;
 		mediaConfig = null;
 	}
 }

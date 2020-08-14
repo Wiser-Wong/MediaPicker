@@ -15,8 +15,8 @@
         <item name="themeCompleteBtnUnSelectBg">@drawable/finish_bg_df</item>
         <item name="themeCompleteTextSize">10sp</item>
         <item name="themeCompleteBtnSelectBg">@drawable/finish_bg_st</item>
-        <item name="themeUnCheckDfIcon">@drawable/media_unselected_num</item>
-        <item name="themeCheckDfIcon">@drawable/media_selected_num</item>
+        <item name="themeUnCheckDfIcon">@drawable/media_unselected</item>
+        <item name="themeCheckDfIcon">@drawable/media_selected</item>
     </style>
 
 </resources>

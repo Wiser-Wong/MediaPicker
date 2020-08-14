@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		MediaHelper.newBind().setBind(new CustomUiBind()).inject();
+
 		rlvSelect = findViewById(R.id.rlv_select);
 		rlvSelect.setLayoutManager(new GridLayoutManager(this,4));
 		rlvSelect.setAdapter(mainAdapter = new MainAdapter(this));
@@ -105,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 						.ofCompress()
 						.ofCompressParameter(100,100,100,Environment.getExternalStorageDirectory()+"/compress/photo")
 						.ofCompressPhotoSize(60)
-						.ofCamera()
+//						.ofCamera()
 //						.ofCameraCrop()
 						.ofCropWidth(400)
 						.ofCropHeight(800)

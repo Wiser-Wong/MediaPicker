@@ -2,7 +2,7 @@ package com.wiser.picker.ui.core;
 
 import android.app.Activity;
 
-import com.wiser.picker.ui.MediaSelectActivity;
+import com.wiser.picker.ui.select.MediaSelectActivity;
 import com.wiser.picker.ui.config.MediaConfig;
 
 /**
@@ -21,6 +21,10 @@ public class MediaUiManage implements IMediaUiManage {
 	@Override public IMediaUiBind bind() {
 		if (iMediaUiBind != null) return iMediaUiBind;
 		return IMediaUiBind.defaultBind;
+	}
+
+	@Override public void unBind() {
+		this.iMediaUiBind = null;
 	}
 
 	/**

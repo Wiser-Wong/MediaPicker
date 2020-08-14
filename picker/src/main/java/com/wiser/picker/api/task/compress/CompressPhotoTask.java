@@ -8,7 +8,8 @@ import androidx.fragment.app.FragmentActivity;
 import com.wiser.picker.api.config.MediaConstants;
 import com.wiser.picker.api.model.MediaData;
 import com.wiser.picker.api.utils.FileHelper;
-import com.wiser.picker.ui.MediaSelectActivity;
+import com.wiser.picker.ui.preview.MediaPreviewActivity;
+import com.wiser.picker.ui.select.MediaSelectActivity;
 import com.wiser.picker.ui.config.MediaConfig;
 import com.wiser.picker.ui.utils.BitmapTool;
 
@@ -37,6 +38,11 @@ public class CompressPhotoTask extends AsyncTask<MediaData, Void, Boolean> {
 		reference = new WeakReference<>(activity);
 		if (activity instanceof MediaSelectActivity) {
 			config = ((MediaSelectActivity) activity).getBiz() != null ? ((MediaSelectActivity) activity).getBiz().config() : null;
+			this.onCompressListener = onCompressListener;
+			mediaDataList = new ArrayList<>();
+		}
+		if (activity instanceof MediaPreviewActivity) {
+			config = ((MediaPreviewActivity) activity).getBiz() != null ? ((MediaPreviewActivity) activity).getBiz().config() : null;
 			this.onCompressListener = onCompressListener;
 			mediaDataList = new ArrayList<>();
 		}

@@ -43,6 +43,9 @@ public class MediaData implements Parcelable {
 	// 展示模式 是否有相机
 	public int		showMode;
 
+	// 当前位置
+	public int		position;
+
 	public MediaData() {}
 
 	public MediaData(String path, String name, long dateTime, long size, long videoDuration, int width, int height, int mediaType) {
@@ -65,6 +68,10 @@ public class MediaData implements Parcelable {
 		width = in.readInt();
 		height = in.readInt();
 		mediaType = in.readInt();
+		isSelect = in.readByte() != 0;
+		selectNum = in.readInt();
+		showMode = in.readInt();
+		position = in.readInt();
 	}
 
 	public static final Creator<MediaData> CREATOR = new Creator<MediaData>() {
@@ -91,5 +98,9 @@ public class MediaData implements Parcelable {
 		dest.writeInt(width);
 		dest.writeInt(height);
 		dest.writeInt(mediaType);
+		dest.writeByte((byte) (isSelect ? 1 : 0));
+		dest.writeInt(selectNum);
+		dest.writeInt(showMode);
+		dest.writeInt(position);
 	}
 }

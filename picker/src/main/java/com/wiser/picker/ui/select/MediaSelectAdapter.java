@@ -1,5 +1,6 @@
-package com.wiser.picker.ui;
+package com.wiser.picker.ui.select;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,10 +66,6 @@ public class MediaSelectAdapter extends BasePhotoAdapter<MediaData, BasePhotoHol
 		setItems(mediaData);
 	}
 
-	public void setSelectData(List<MediaData> selectData) {
-		this.selectData = selectData;
-	}
-
 	@Override public int getItemViewType(int position) {
 		if (getItem(position).showMode == MediaConstants.CAMERA_MODE) {
 			return MediaConstants.CAMERA_MODE;
@@ -104,12 +101,15 @@ public class MediaSelectAdapter extends BasePhotoAdapter<MediaData, BasePhotoHol
 
 			final IMediaSelectBiz iMediaSelectBiz = ((MediaSelectActivity) getContext()).getBiz();
 			if (iMediaSelectBiz != null) {
+				// 设置对应坐标
+				iMediaSelectBiz.getSourceMediaDataList().get(position).position = position;
 				// 预览图片
 				ivSelectPhoto.setOnClickListener(new View.OnClickListener() {
 
 					@Override public void onClick(View v) {
 						// 预览图片
-						MediaHelper.mediaUiManage().bind().onPreviewClick(v, getItems(), getSelectData(), ((MediaSelectActivity) getContext()).getBiz().config().surplusCount, position);
+						MediaHelper.mediaUiManage().bind().onPreviewClick((Activity) getContext(), getItems(), getSelectData(), ((MediaSelectActivity) getContext()).getBiz().config(),
+								MediaConstants.PREVIEW_PHOTO_TYPE, ((MediaSelectActivity) getContext()).getBiz().config().surplusCount, position);
 					}
 				});
 			}

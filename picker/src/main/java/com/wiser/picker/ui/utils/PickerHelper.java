@@ -11,6 +11,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.wiser.picker.api.model.MediaData;
+
+import java.util.List;
+
 /**
  * @author Wiser
  *
@@ -34,6 +38,17 @@ public class PickerHelper {
 			// 虚拟键盘也透明
 			// getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 		}
+	}
+
+	// 转换数据
+	public static MediaData[] covertData(List<MediaData> mediaDataList) {
+		if (mediaDataList == null) return null;
+		MediaData[] selectData = new MediaData[mediaDataList.size()];
+		for (int i = 0; i < mediaDataList.size(); i++) {
+			if (mediaDataList.get(i) == null) continue;
+			selectData[i] = mediaDataList.get(i);
+		}
+		return selectData;
 	}
 
 }

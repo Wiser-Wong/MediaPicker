@@ -24,6 +24,11 @@ public interface IMediaUiManage {
 	IMediaUiBind bind();
 
 	/**
+	 * 解除扩展
+	 */
+	void unBind();
+
+	/**
 	 * 跳转选择媒体界面
 	 * 
 	 * @param activity

@@ -2,7 +2,7 @@ package com.wiser.picker.ui.core;
 
 import android.app.Activity;
 import android.content.Context;
-import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.FragmentActivity;
@@ -28,6 +28,20 @@ public interface IMediaUiBind {
 	int customTheme();
 
 	/**
+	 * 完成状态UI改变
+	 * 
+	 * @param tvComplete
+	 *            完成按钮控件
+	 * @param selectCount
+	 *            选择的数量
+	 * @param surplusCount
+	 *            可选择的数量
+	 * @param isEnable
+	 *            是否可点击
+	 */
+	void completeStateUiChange(TextView tvComplete, int selectCount, int surplusCount, boolean isEnable);
+
+	/**
 	 * 加载图片
 	 *
 	 * @param ivPic
@@ -40,17 +54,21 @@ public interface IMediaUiBind {
 	/**
 	 * 图片预览点击
 	 *
-	 * @param view
+	 * @param activity
 	 * @param mediaDataList
 	 *            媒体源数据集合
 	 * @param selectMediaDataList
 	 *            媒体选择数据集合
 	 * @param surplusCount
 	 *            剩余数量
+	 * @param config
+	 *            配置参数
+	 * @param previewType
+	 *            预览类型
 	 * @param index
 	 *            点击的位置
 	 */
-	void onPreviewClick(View view, List<MediaData> mediaDataList, List<MediaData> selectMediaDataList, int surplusCount, int index);
+	void onPreviewClick(Activity activity, List<MediaData> mediaDataList, List<MediaData> selectMediaDataList, MediaConfig config, int previewType, int surplusCount, int index);
 
 	/**
 	 * 最大选择Toast提示

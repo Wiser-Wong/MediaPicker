@@ -8,12 +8,16 @@
 
     <application
         android:allowBackup="true"
-        android:supportsRtl="true"
         android:requestLegacyExternalStorage="true"
+        android:supportsRtl="true"
         tools:targetApi="q">
 
         <activity
-            android:name=".ui.MediaSelectActivity"
+            android:name=".ui.select.MediaSelectActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.preview.MediaPreviewActivity"
             android:screenOrientation="portrait" />
 
         <provider
